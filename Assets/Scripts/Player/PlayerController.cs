@@ -18,8 +18,10 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody m_PlayerRigidbody;
     private Vector3 m_PlayerRawInput;
+    private Vector3 m_PlayerInput;
     private bool m_PlayerJumpInput;
     private Collider m_PlayerCollider;
+    private Camera m_Camera;
 
 
     private Vector3 BottomPosition
@@ -53,22 +55,25 @@ public class PlayerController : MonoBehaviour
     {
         m_PlayerRigidbody = GetComponent<Rigidbody>();
         m_PlayerCollider = GetComponent<Collider>();
+        m_Camera = Camera.main;
     }
 
     private void Update()
     {
         m_PlayerRawInput = movementInput.GetAxisRaw().ToVector3XZ();
+        m_PlayerInput = m_Camera.transform.forward * m_PlayerRawInput.z + m_Camera.transform.right * m_PlayerRawInput.x;
         m_PlayerJumpInput = jumpInput.GetButton();
 
         if (m_PlayerRawInput != Vector3.zero)
             transform.rotation = Quaternion.Lerp(transform.rotation,
-                Quaternion.LookRotation(m_PlayerRawInput.normalized, Vector3.up), rotationSmoothAmm * Time.deltaTime);
+                Quaternion.LookRotation(new Vector3(m_PlayerInput.x, 0, m_PlayerInput.z).normalized, Vector3.up),
+                rotationSmoothAmm * Time.deltaTime);
     }
 
     private void FixedUpdate()
     {
         Vector3 finalVelocity = Vector3.Lerp(m_PlayerRigidbody.velocity,
-            m_PlayerRawInput * maxMovementSpeed, movementAcceleration * Time.fixedDeltaTime);
+            m_PlayerInput * maxMovementSpeed, movementAcceleration * Time.fixedDeltaTime);
         m_PlayerRigidbody.velocity = new Vector3(finalVelocity.x, m_PlayerRigidbody.velocity.y, finalVelocity.z);
 
         if (m_PlayerJumpInput && IsGrounded())
