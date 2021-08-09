@@ -39,10 +39,8 @@ namespace Player
                 {
                     case Axis.Horizontal:
                         return new Vector2(correspondingAction.ReadValue<Vector2>().x, 0);
-                        break;
                     case Axis.Vertical:
                         return new Vector2(0, correspondingAction.ReadValue<Vector2>().y);
-                        break;
                     case Axis.Both:
                         return correspondingAction.ReadValue<Vector2>();
                 }
