@@ -10,10 +10,17 @@ namespace Player
         {
             foreach (var reference in references)
             {
-                if (value)
-                    reference.action.Enable();
+                if (reference)
+                {
+                    if (value)
+                        reference.action.Enable();
+                    else
+                        reference.action.Disable();
+                }
                 else
-                    reference.action.Disable();
+                {
+                    Debug.LogWarning("Couldn't find input reference! Skipping.");
+                }
             }
         }
     }

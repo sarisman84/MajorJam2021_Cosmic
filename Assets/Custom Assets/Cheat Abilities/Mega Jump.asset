@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Mega Jump
   m_EditorClassIdentifier: 
   AbilityID: Mega Jump
-  Keybind: {fileID: 0}
+  Keybind: {fileID: 3624448103984055609, guid: 7ae58d0662766c546a8b06c659571cb7, type: 3}
   IsUseable: 0
   moddedJumpHeight: 15
   moddedLowJumpHeight: 10

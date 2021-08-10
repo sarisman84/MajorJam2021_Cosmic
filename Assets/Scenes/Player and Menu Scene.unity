@@ -437,6 +437,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[0].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[0].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableAbility
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[0].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Player.AbilityManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[0].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Speed boost
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808909069732638560, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: currentAbilities.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7808909069732638560, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: currentAbilities.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: fd2347f011949954191c472a7097c346, type: 2}
+    - target: {fileID: 7808909069732638560, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: currentAbilities.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: a9a81cceb6fd0ad4d9e3c9fb22242dbf, type: 2}
     - target: {fileID: 8922045534474442933, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: m_RootOrder
       value: 3

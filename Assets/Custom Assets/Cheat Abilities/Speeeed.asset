@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Speeeed
   m_EditorClassIdentifier: 
   AbilityID: Speed boost
-  Keybind: {fileID: 0}
-  IsUseable: 0
-  moddedMaxMovementSpeed: 5
-  moddedAcceleration: 3
+  Keybind: {fileID: -6954566277486276780, guid: 7ae58d0662766c546a8b06c659571cb7, type: 3}
+  IsUseable: 1
+  moddedMaxMovementSpeed: 30
+  moddedAcceleration: 5
