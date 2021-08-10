@@ -12,6 +12,7 @@ public class PlayerController : MonoBehaviour
     [Space] public float maxMovementSpeed;
     public float movementAcceleration;
     public float rotationSmoothAmm;
+    public float smoothMovementAmm;
     public float jumpHeight;
     public float lowJumpHeight;
     public float fallMultiplier;
