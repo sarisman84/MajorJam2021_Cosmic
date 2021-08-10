@@ -228,6 +228,7 @@ GameObject:
   - component: {fileID: 781084063}
   - component: {fileID: 781084062}
   - component: {fileID: 781084061}
+  - component: {fileID: 781084065}
   m_Layer: 0
   m_Name: Grapple point (1)
   m_TagString: GrapplePoint
@@ -305,12 +306,24 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 781084060}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: -0.21}
+  m_LocalPosition: {x: 0, y: 13.36, z: -0.21}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &781084065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 781084060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb877cf0b7f403ba3250f9295d7ce55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1073146069
 GameObject:
   m_ObjectHideFlags: 0
@@ -323,7 +336,7 @@ GameObject:
   - component: {fileID: 1073146072}
   - component: {fileID: 1073146071}
   - component: {fileID: 1073146070}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -419,6 +432,7 @@ GameObject:
   - component: {fileID: 1182785768}
   - component: {fileID: 1182785767}
   - component: {fileID: 1182785766}
+  - component: {fileID: 1182785770}
   m_Layer: 0
   m_Name: Grapple point (2)
   m_TagString: GrapplePoint
@@ -496,12 +510,24 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1182785765}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 20.53, y: 2, z: 28.9}
+  m_LocalPosition: {x: 20.53, y: 13.36, z: 28.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1182785770
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1182785765}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb877cf0b7f403ba3250f9295d7ce55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2017567263
 GameObject:
   m_ObjectHideFlags: 0
@@ -514,6 +540,7 @@ GameObject:
   - component: {fileID: 2017567266}
   - component: {fileID: 2017567265}
   - component: {fileID: 2017567264}
+  - component: {fileID: 2017567268}
   m_Layer: 0
   m_Name: Grapple point
   m_TagString: GrapplePoint
@@ -591,9 +618,21 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2017567263}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 41.29}
+  m_LocalPosition: {x: 0, y: 13.36, z: 41.29}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2017567268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2017567263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0cb877cf0b7f403ba3250f9295d7ce55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
