@@ -27,6 +27,10 @@ public class PlayerController : MonoBehaviour
     private bool m_HasAlreadyJumped;
 
 
+    public float CustomMaxMovementSpeed { set; private get; }
+    public float CustomAcceleration { set; private get; }
+
+
     private Vector3 BottomPosition
     {
         get
@@ -85,7 +89,8 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         Vector3 finalVelocity = Vector3.Lerp(m_PlayerRigidbody.velocity,
-            m_PlayerInput * maxMovementSpeed, movementAcceleration * Time.fixedDeltaTime);
+            m_PlayerInput * (maxMovementSpeed + (CustomMaxMovementSpeed + 1)),
+            (movementAcceleration + CustomAcceleration + 1) * Time.fixedDeltaTime);
         m_PlayerRigidbody.velocity = new Vector3(finalVelocity.x, m_PlayerRigidbody.velocity.y, finalVelocity.z);
 
         if (m_PlayerJumpInput && IsGrounded() && !m_HasAlreadyJumped)
