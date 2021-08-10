@@ -28,9 +28,18 @@ public class PlayerController : MonoBehaviour
     private bool m_HasAlreadyJumped;
 
 
+    #region Public Properties to mod player stats
+
+    public float CustomFallMultiplier { set; private get; }
+    public float CustomLowJumpHeight { set; private get; }
+    public float CustomJumpHeight { set; private get; }
     public float CustomMaxMovementSpeed { set; private get; }
     public float CustomAcceleration { set; private get; }
 
+    #endregion
+
+
+    #region Private Properties
 
     private Vector3 BottomPosition
     {
@@ -52,6 +61,8 @@ public class PlayerController : MonoBehaviour
     {
         get { return new Vector3(groundColliderSize.x / 2f, groundColliderSize.y, groundColliderSize.z / 2f); }
     }
+
+    #endregion
 
     private void OnEnable()
     {
@@ -96,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
         if (m_PlayerJumpInput && IsGrounded() && !m_HasAlreadyJumped)
         {
-            m_PlayerRigidbody.AddForce(Vector3.up * jumpHeight, ForceMode.Impulse);
+            m_PlayerRigidbody.AddForce(Vector3.up * (jumpHeight + CustomJumpHeight), ForceMode.Impulse);
             m_HasAlreadyJumped = true;
         }
 
@@ -113,11 +124,11 @@ public class PlayerController : MonoBehaviour
     {
         if (m_PlayerRigidbody.velocity.y < 0)
         {
-            m_PlayerRigidbody.velocity += Vector3.up * (Physics.gravity.y * (fallMultiplier - 1) * Time.deltaTime);
+            m_PlayerRigidbody.velocity += Vector3.up * (Physics.gravity.y * ((fallMultiplier + CustomFallMultiplier) - 1) * Time.deltaTime);
         }
         else if (m_PlayerRigidbody.velocity.y > 0 && !m_PlayerJumpInput)
         {
-            m_PlayerRigidbody.velocity += Vector3.up * (Physics.gravity.y * (lowJumpHeight - 1) * Time.deltaTime);
+            m_PlayerRigidbody.velocity += Vector3.up * (Physics.gravity.y * ((lowJumpHeight + CustomLowJumpHeight) - 1) * Time.deltaTime);
         }
     }
 
