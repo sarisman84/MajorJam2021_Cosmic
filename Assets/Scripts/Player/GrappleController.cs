@@ -162,4 +162,18 @@ public class GrappleController : MonoBehaviour
     {
         InputManager.SetInputActive(false, grapple);
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue - new Color(0, 0, 0, 0.75f);
+        m_GrapplePoints = m_GrapplePoints != null && m_GrapplePoints.Count != 0 &&
+                          FindObjectsOfType<GrapplePoint>() is { } foundObjects &&
+                          foundObjects.Length == m_GrapplePoints.Count
+            ? m_GrapplePoints
+            : FindObjectsOfType<GrapplePoint>().ToList();
+        foreach (var grapplePoint in m_GrapplePoints)
+        {
+            Gizmos.DrawSphere(grapplePoint.transform.position, grappleDistance);
+        }
+    }
 }
