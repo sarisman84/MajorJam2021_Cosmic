@@ -11,6 +11,7 @@ public class GrappleController : MonoBehaviour
     [SerializeField] private InputActionReference grapple;
     [SerializeField] private LineRenderer grappleRenderer;
     [SerializeField] private float grappleDistance;
+    [SerializeField] private Sprite grappleSelectionIndicator;
 
     private bool m_IsAlreadyGrapling = false;
     private List<GrapplePoint> m_GrapplePoints;
@@ -18,9 +19,10 @@ public class GrappleController : MonoBehaviour
     private Vector3 m_CurrentGrapplePos;
     private Vector3 m_GrapplePoint;
     private GrapplePoint m_ClosestPoint;
+    private SpriteRenderer m_GrappleSelectionRenderer;
 
     Camera m_Cam;
-    
+
     public GrapplePoint LatestPoint => m_ClosestPoint;
 
     // Start is called before the first frame update
@@ -29,6 +31,9 @@ public class GrappleController : MonoBehaviour
         m_Cam = Camera.main;
         m_GrapplePoints = GameObject.FindObjectsOfType<GrapplePoint>().ToList();
         grappleRenderer.enabled = false;
+        m_GrappleSelectionRenderer = new GameObject("Grapple Point Indicator").AddComponent<SpriteRenderer>();
+        m_GrappleSelectionRenderer.sprite = grappleSelectionIndicator;
+        m_GrappleSelectionRenderer.gameObject.SetActive(false);
     }
 
     // Update is called once per frame
@@ -37,9 +42,12 @@ public class GrappleController : MonoBehaviour
         bool grappling = grapple.GetButton();
 
         m_ClosestPoint = !m_IsAlreadyGrapling ? GetClosestGrapplePoint() : m_ClosestPoint;
+
+        UpdateGrappleSelectionIndicator(grappling);
+
+
         if (grappling && !m_IsAlreadyGrapling && m_ClosestPoint)
         {
-       
             if (m_ClosestPoint)
                 StartGrappling(m_ClosestPoint.transform.position);
         }
@@ -50,6 +58,25 @@ public class GrappleController : MonoBehaviour
         }
 
         m_IsAlreadyGrapling = grappling && m_ClosestPoint;
+    }
+
+    private void UpdateGrappleSelectionIndicator(bool grappling)
+    {
+        m_GrappleSelectionRenderer.gameObject.SetActive(m_ClosestPoint && !grappling);
+
+        if (!grappling && m_ClosestPoint)
+        {
+            var indicator = m_GrappleSelectionRenderer.transform;
+            var closestPointTransform = m_ClosestPoint.transform;
+
+            indicator.position = m_ClosestPoint
+                ? closestPointTransform.position
+                : indicator.position;
+
+            indicator.rotation =
+                Quaternion.LookRotation((m_Cam.transform.position - closestPointTransform.position).normalized,
+                    Vector3.up);
+        }
     }
 
     private void LateUpdate()
