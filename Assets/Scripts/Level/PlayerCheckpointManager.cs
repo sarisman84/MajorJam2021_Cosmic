@@ -35,7 +35,7 @@ namespace Level
 
             foreach (var checkpoint in currentPlayerCheckpoints)
             {
-                checkpoint.ONTriggerEnter += obj => OnCheckpointTrigger(checkpoint, obj);
+                checkpoint.ONTriggerEnter += obj => OnCheckpointTrigger(currentPlayerCheckpoints,checkpoint, obj);
             }
 
             if (!CheckpointManager)
@@ -46,7 +46,7 @@ namespace Level
 
         #region Checkpoint implementation
 
-        private void OnCheckpointTrigger(Checkpoint self, Collider other)
+        private void OnCheckpointTrigger(List<Checkpoint> playerCheckpoints, Checkpoint self, Collider other)
         {
             if (other.GetComponent<PlayerController>() is { } playerController && !self.HasAlreadySaved)
             {
@@ -55,6 +55,12 @@ namespace Level
                 m_LatestPlayerCameraInfo = new CheckpointInfo(cam.position, cam.rotation);
                 self.HasAlreadySaved = true;
                 Debug.Log("Checkpoint reached");
+                
+                //Reset other checkpoints so that backwards player progress save can be possible.
+                foreach (var otherCheckpoint in playerCheckpoints)
+                {
+                    otherCheckpoint.HasAlreadySaved = false;
+                }
             }
         }
 
