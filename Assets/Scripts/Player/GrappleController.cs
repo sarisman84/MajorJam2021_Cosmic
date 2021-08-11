@@ -60,6 +60,10 @@ public class GrappleController : MonoBehaviour
         m_IsAlreadyGrapling = grappling && m_ClosestPoint;
     }
 
+    /// <summary>
+    /// Updates the indicator's active state as well as position and rotation information to align with the latest grapple point found and rotate towards the player's camera.
+    /// </summary>
+    /// <param name="grappling">Indication of an attempt to grapple something.</param>
     private void UpdateGrappleSelectionIndicator(bool grappling)
     {
         m_GrappleSelectionRenderer.gameObject.SetActive(m_ClosestPoint && !grappling);
