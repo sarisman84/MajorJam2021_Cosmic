@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Player
+namespace MajorJam.System
 {
     [RequireComponent(typeof(PlayerController))]
     public class AbilityManager : MonoBehaviour

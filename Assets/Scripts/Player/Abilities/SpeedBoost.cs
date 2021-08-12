@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Player
+namespace MajorJam.System
 {
     [CreateAssetMenu(menuName = "Cheats/Speed Mod", fileName = "New Speed Mod", order = 0)]
     public class SpeedBoost : Ability

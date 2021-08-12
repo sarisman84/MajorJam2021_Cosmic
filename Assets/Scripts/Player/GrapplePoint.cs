@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Player
+namespace MajorJam.System
 {
     public class GrapplePoint : MonoBehaviour
     {

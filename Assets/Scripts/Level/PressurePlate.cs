@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using MajorJam.System;
 using UnityEngine;
 
 public class PressurePlate : MonoBehaviour
@@ -17,11 +18,13 @@ public class PressurePlate : MonoBehaviour
         m_OriginalSize = transform.localScale;
         transform.DOScale(new Vector3(m_OriginalSize.x, pressurePlateHeightWhilePressed, m_OriginalSize.z),
             pressurePlatePressingSpeed);
+        AudioManager.Manager.Play("PP_Pressed");
     }
 
 
     public void OnPressurePlateRelease()
     {
         transform.DOScale(m_OriginalSize, pressurePlateReleaseSpeed);
+        AudioManager.Manager.Play("PP_Released");
     }
 }

@@ -1,5 +1,5 @@
 using System;
-using Player;
+using MajorJam.System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
 
-namespace Player
+namespace MajorJam.System
 {
   
     public abstract class Ability : ScriptableObject

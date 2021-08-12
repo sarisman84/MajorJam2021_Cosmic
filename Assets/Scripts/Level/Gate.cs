@@ -1,5 +1,6 @@
 ﻿using System;
 using DG.Tweening;
+using MajorJam.System;
 using UnityEngine;
 
 namespace Level
@@ -19,11 +20,13 @@ namespace Level
 
         public void Open()
         {
+            AudioManager.Manager.Play("Gate_Open");
             transform.DOMove(LocalizedOpenPosition, gateOpeningSpeed);
         }
 
         public void Close()
         {
+            AudioManager.Manager.Play("Gate_Closed");
             transform.DOMove(m_StartingPosition, gateOpeningSpeed);
         }
 

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Player
+namespace MajorJam.System
 {
     [CreateAssetMenu(fileName = "New Jump Mod", menuName = "Cheats/Jump Mod", order = 0)]
     public class JumpBoost : Ability

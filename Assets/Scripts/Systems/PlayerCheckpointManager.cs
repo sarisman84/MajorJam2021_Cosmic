@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Cinemachine;
-using Player;
+using MajorJam.System;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
@@ -16,7 +16,7 @@ namespace Level
         public UnityEvent<Vector3> onPlayerResetToCheckpoint;
 
         private CheckpointInfo m_LatestPlayerInfo, m_LatestPlayerCameraInfo;
-        private PlayerController m_PlayerController;
+        private GameObject m_PlayerController;
         private CinemachineFreeLook m_PlayerCamera;
 
 
@@ -29,7 +29,7 @@ namespace Level
 
         private void Awake()
         {
-            m_PlayerController = FindObjectOfType<PlayerController>();
+            m_PlayerController = GameObject.FindGameObjectWithTag("Player");
             m_PlayerCamera = FindObjectOfType<CinemachineFreeLook>();
             currentPlayerCheckpoints.AddRange(FindObjectsOfType<Checkpoint>());
 
@@ -48,7 +48,7 @@ namespace Level
 
         private void OnCheckpointTrigger(List<Checkpoint> playerCheckpoints, Checkpoint self, Collider other)
         {
-            if (other.GetComponent<PlayerController>() is { } playerController && !self.HasAlreadySaved)
+            if (other.CompareTag("Player") && !self.HasAlreadySaved)
             {
                 m_LatestPlayerInfo = new CheckpointInfo(self.transform.position, self.transform.rotation);
                 Transform cam = m_PlayerCamera.transform;
