@@ -21,13 +21,15 @@ namespace Level
         public void Open()
         {
             AudioManager.Manager.Play("Gate_Open");
-            transform.DOMove(LocalizedOpenPosition, gateOpeningSpeed);
+            transform.DOMove(LocalizedOpenPosition, gateOpeningSpeed)
+                .OnComplete(() => AudioManager.Manager.Stop("Gate_Open"));
         }
 
         public void Close()
         {
             AudioManager.Manager.Play("Gate_Closed");
-            transform.DOMove(m_StartingPosition, gateOpeningSpeed);
+            transform.DOMove(m_StartingPosition, gateOpeningSpeed)
+                .OnComplete(() => AudioManager.Manager.Stop("Gate_Closed"));
         }
 
 

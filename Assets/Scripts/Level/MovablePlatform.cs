@@ -65,6 +65,25 @@ namespace Level
                 m_Rigidbody.MovePosition(m_Rigidbody.position + dir * (movementSpeed * Time.fixedDeltaTime));
                 m_HasReachedDestination =
                     IsPositionReached(transform.position, GetTargetWaypointPosition(m_CurrentWaypoint));
+                CarryRigidbodiesOver(FetchGameObjects(), dir * (movementSpeed * Time.fixedDeltaTime));
+            }
+        }
+
+        private Collider[] FetchGameObjects()
+        {
+            Collider[] foundObjects = new Collider[50];
+            Physics.OverlapBoxNonAlloc(
+                new Vector3(transform.position.x, (transform.position.y + transform.localScale.y / 2f),
+                    transform.position.z), transform.localScale / 2f, foundObjects, transform.rotation);
+            return foundObjects;
+        }
+
+        private void CarryRigidbodiesOver(Collider[] foundObjects, Vector3 dir)
+        {
+            foreach (var foundObject in foundObjects)
+            {
+                if (foundObject)
+                    foundObject.transform.position += dir;
             }
         }
 

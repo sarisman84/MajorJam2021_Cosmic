@@ -42,6 +42,8 @@ namespace MajorJam.System
         }
 
 
+        
+        
         public void Play(string clipName)
         {
             if (audioClips.Find(c => c.clipId.Equals(clipName)) is { } foundClip)
@@ -52,6 +54,17 @@ namespace MajorJam.System
 
             Debug.LogWarning($"Could not find a clip with the id: {clipName}");
         }
+        public void Stop(string clipName)
+        {
+            if (audioClips.Find(c => c.clipId.Equals(clipName)) is { } foundClip)
+            {
+                foundClip.Player.Stop();
+                return;
+            }
+
+            Debug.LogWarning($"Could not find a clip with the id: {clipName}");
+        }
+        
     }
 
 

@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     [Space] public LayerMask groundMask;
     public Vector3 groundColliderSize;
 
+    private Animator m_PlayerAnimController;
     private Rigidbody m_PlayerRigidbody;
     private Vector3 m_PlayerRawInput;
     private Vector3 m_PlayerInput;
@@ -28,6 +29,15 @@ public class PlayerController : MonoBehaviour
     private bool m_HasAlreadyJumped;
     private bool m_IsNotAlreadyGrounded;
 
+    private string m_CurrentAnimState;
+
+    private const string PlayerIdle = "Idle",
+        PlayerWalk = "Walking",
+        PlayerRun = "Running",
+        PlayerJump = "Jumping Up",
+        PlayerFall = "Falling",
+        PlayerLand = "Fall to Land";
+
     #region Public Player Events
 
     public event Action<Transform> ONPlayerJumpEvent, ONPlayerLandingEvent;
@@ -35,9 +45,11 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
-    
+
     //Properties that expose some of the values that the player uses (handy for applying buffs such as speed or jump values)
+
     #region Public Properties to mod player stats
+
     public float CustomFallMultiplier { set; private get; }
     public float CustomLowJumpHeight { set; private get; }
     public float CustomJumpHeight { set; private get; }
@@ -84,6 +96,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        m_PlayerAnimController = GetComponentInChildren<Animator>();
         m_PlayerRigidbody = GetComponent<Rigidbody>();
         m_PlayerCollider = GetComponent<Collider>();
         m_Camera = Camera.main;
@@ -92,6 +105,30 @@ public class PlayerController : MonoBehaviour
 
         // ONPlayerJumpEvent += controller => Debug.Log($"{controller.gameObject.name} has Jumped!");
         // ONPlayerLandingEvent += controller => Debug.Log($"{controller.gameObject.name} has landed!");
+    }
+
+    enum ASChangeType
+    {
+        None,
+        CrossFade
+    }
+
+    private void ChangeAnimationState(string newState, ASChangeType type = ASChangeType.None)
+    {
+        if (m_CurrentAnimState == newState) return;
+
+        switch (type)
+        {
+            case ASChangeType.None:
+                m_PlayerAnimController.Play(newState);
+                break;
+            case ASChangeType.CrossFade:
+                m_PlayerAnimController.CrossFade(newState, 0.5f);
+                break;
+        }
+
+
+        m_CurrentAnimState = newState;
     }
 
     public void SetCursorActive(bool value)
@@ -136,9 +173,19 @@ public class PlayerController : MonoBehaviour
             (movementAcceleration + CustomAcceleration + 1) * Time.fixedDeltaTime);
         m_PlayerRigidbody.velocity = new Vector3(finalVelocity.x, m_PlayerRigidbody.velocity.y, finalVelocity.z);
 
+
         if (m_PlayerRigidbody.velocity.magnitude.IsFloatWithinLimits(-0.01f, 0.01f))
         {
+            if (!m_HasAlreadyJumped)
+                ChangeAnimationState(PlayerIdle, ASChangeType.CrossFade);
             OnPlayerMoveEvent?.Invoke(m_PlayerRigidbody.velocity);
+        }
+        else
+        {
+            if (!m_HasAlreadyJumped)
+                ChangeAnimationState(m_PlayerRigidbody.velocity.magnitude.IsFloatWithinLimits(-5, 5)
+                    ? PlayerWalk
+                    : PlayerRun, ASChangeType.CrossFade);
         }
     }
 
@@ -147,12 +194,14 @@ public class PlayerController : MonoBehaviour
         //Checks if the player has attempted to jump on the ground and has not already jumped.
         if (m_PlayerJumpInput && IsGrounded() && !m_HasAlreadyJumped)
         {
+            ChangeAnimationState(PlayerJump);
             var velocity = m_PlayerRigidbody.velocity;
             velocity = new Vector3(velocity.x, 0, velocity.z);
             m_PlayerRigidbody.velocity = velocity;
             m_PlayerRigidbody.AddForce(Vector3.up * (jumpHeight + CustomJumpHeight), ForceMode.VelocityChange);
             m_HasAlreadyJumped = true;
             ONPlayerJumpEvent?.Invoke(transform);
+            AudioManager.Manager.Play("Player_Jump");
         }
 
         //Checks if the player is in the air (is either falling or jumping)
@@ -161,12 +210,19 @@ public class PlayerController : MonoBehaviour
             m_IsNotAlreadyGrounded = false;
         }
 
+        if (m_PlayerRigidbody.velocity.y < -0.01f)
+        {
+            ChangeAnimationState(PlayerFall, ASChangeType.CrossFade);
+        }
+
         //Checks if the player has landed
         if (m_PlayerRigidbody.velocity.y < -0.01f && IsGrounded() && !m_IsNotAlreadyGrounded)
         {
             ONPlayerLandingEvent?.Invoke(transform);
             m_HasAlreadyJumped = false;
             m_IsNotAlreadyGrounded = true;
+            AudioManager.Manager.Play("Player_Land");
+            ChangeAnimationState(PlayerLand);
         }
     }
 

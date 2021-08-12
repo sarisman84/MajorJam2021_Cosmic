@@ -10,6 +10,7 @@ public class GrappleController : MonoBehaviour
 {
     [SerializeField] private InputActionReference grapple;
     [SerializeField] private LineRenderer grappleRenderer;
+    [SerializeField] private float grappleDetectionDistance = 20f;
     [SerializeField] private float grappleDistance;
     [SerializeField] private Sprite grappleSelectionIndicator;
 
@@ -104,8 +105,8 @@ public class GrappleController : MonoBehaviour
         m_Joint.connectedAnchor = grapplePoint;
 
         //The distance grapple will try to keep from grapple point. 
-        m_Joint.maxDistance = grappleDistance * 0.35f;
-        m_Joint.minDistance = grappleDistance * 0.15f;
+        m_Joint.maxDistance = grappleDistance * 0.8f;
+        m_Joint.minDistance = grappleDistance * 0.2f;
 
         //Adjust these values to fit your game.
         m_Joint.spring = 4.5f;
@@ -133,10 +134,10 @@ public class GrappleController : MonoBehaviour
         //     .ToList();
 
         GrapplePoint closestPoint = m_GrapplePoints.Find(p =>
-            Vector3.Distance(p.transform.position, transform.position) <= grappleDistance &&
+            Vector3.Distance(p.transform.position, transform.position) <= grappleDetectionDistance &&
             GeometryUtility.TestPlanesAABB(planes, p.Collider.bounds) &&
             Physics.Raycast(transform.position, (p.transform.position - transform.position).normalized, out var hitInfo,
-                grappleDistance) &&
+                grappleDetectionDistance) &&
             hitInfo.transform.CompareTag("GrapplePoint") && IsInfrontOfThePlayer(p) > 0.8f);
         return closestPoint;
     }
@@ -173,7 +174,7 @@ public class GrappleController : MonoBehaviour
             : FindObjectsOfType<GrapplePoint>().ToList();
         foreach (var grapplePoint in m_GrapplePoints)
         {
-            Gizmos.DrawSphere(grapplePoint.transform.position, grappleDistance);
+            Gizmos.DrawSphere(grapplePoint.transform.position, grappleDetectionDistance);
         }
     }
 }
