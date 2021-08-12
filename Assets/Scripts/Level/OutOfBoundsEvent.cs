@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using Level;
 using UnityEngine;
 
- [RequireComponent(typeof(BoxCollider))]
-public class OutOfBoundsTrigger : MonoBehaviour
+[RequireComponent(typeof(BoxCollider))]
+public class OutOfBoundsEvent : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    public void ResetPlayerPosition()
     {
         if (PlayerCheckpointManager.CheckpointManager is { } manager)
         {
