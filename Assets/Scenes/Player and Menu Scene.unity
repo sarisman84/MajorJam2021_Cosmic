@@ -285,7 +285,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.11436518, y: -8.167479e-24, z: 9.402444e-25, w: 0.9934388}
+  m_LocalRotation: {x: 0.11436518, y: 0, z: 0, w: 0.9934388}
   m_LocalPosition: {x: 0, y: 5.95, z: -13.32}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -540,15 +540,35 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: cheatCodeLibrary.Array.size
-      value: 6
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[0].code
+      value: tplvl1
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[1].code
+      value: tplvl2
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[2].code
+      value: tplvl3
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[3].code
+      value: tplvl3end
       objectReference: {fileID: 0}
     - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: cheatCodeLibrary.Array.data[4].code
-      value: reversegravity
+      value: tplvl4
       objectReference: {fileID: 0}
     - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: cheatCodeLibrary.Array.data[5].code
-      value: tplvl4
+      value: reversegravity
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[6].code
+      value: ghostie
       objectReference: {fileID: 0}
     - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: onSuccessfulCheatInput.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -563,11 +583,19 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[6].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: cheatCodeLibrary.Array.data[4].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: cheatCodeLibrary.Array.data[5].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[6].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
@@ -579,11 +607,19 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 335139534}
     - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[6].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 335139534}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: cheatCodeLibrary.Array.data[4].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: cheatCodeLibrary.Array.data[5].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[6].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
@@ -595,6 +631,18 @@ PrefabInstance:
       value: EnableAbility
       objectReference: {fileID: 0}
     - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[6].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: EnableAbility
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[0].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MajorJam.System.AbilityManager, MajorJam_Player_CheatAbilities
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[3].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Player.AbilityManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: cheatCodeLibrary.Array.data[4].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: MajorJam.System.AbilityManager, MajorJam_Player_CheatAbilities
       objectReference: {fileID: 0}
@@ -603,12 +651,52 @@ PrefabInstance:
       value: MajorJam.System.AbilityManager, MajorJam_Player_CheatAbilities
       objectReference: {fileID: 0}
     - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[6].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Player.AbilityManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[0].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[3].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[5].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[6].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_FloatArgument
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[0].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: TP/Level1
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[1].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: TP/Level2
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[2].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: TP/Level3
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[3].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: TP/Level 3 Fake Ending
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: cheatCodeLibrary.Array.data[4].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: reverseGravity
+      value: TP/Level 4
       objectReference: {fileID: 0}
     - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: cheatCodeLibrary.Array.data[5].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: TP/Level 4
+      value: reverseGravity
+      objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[6].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: Speed Boost
       objectReference: {fileID: 0}
     - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: cheatCodeLibrary.Array.data[4].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -618,9 +706,13 @@ PrefabInstance:
       propertyPath: cheatCodeLibrary.Array.data[5].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: cheatCodeLibrary.Array.data[6].cheatCodeEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 7808909069732638560, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: currentAbilities.Array.size
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 7808909069732638560, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: currentAbilities.Array.data[3]
@@ -638,6 +730,10 @@ PrefabInstance:
       propertyPath: currentAbilities.Array.data[6]
       value: 
       objectReference: {fileID: 11400000, guid: 69514bc5af5643c40ae4a7f2b8616b97, type: 2}
+    - target: {fileID: 7808909069732638560, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
+      propertyPath: currentAbilities.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: 32d6d8b7e33ee0d459a22519df5266e1, type: 2}
     - target: {fileID: 8922045534474442933, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -708,11 +804,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8922045535231119847, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -1.8276225e-23
+      value: 1e-45
       objectReference: {fileID: 0}
     - target: {fileID: 8922045535231119847, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -8.599561e-25
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8922045536196990378, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: m_LocalScale.x
@@ -768,11 +864,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8922045536314795450, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -7.612792e-24
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8922045536314795450, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -3.878068e-24
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8922045536338384675, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: m_LocalPosition.x
