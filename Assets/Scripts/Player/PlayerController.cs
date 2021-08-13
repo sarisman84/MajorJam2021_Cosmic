@@ -168,31 +168,34 @@ public class PlayerController : MonoBehaviour
 
     private void ApplyMovementInputToRigidbody()
     {
+        bool isGrounded = IsGrounded();
         Vector3 finalVelocity = Vector3.Lerp(m_PlayerRigidbody.velocity,
             m_PlayerInput * (maxMovementSpeed + (CustomMaxMovementSpeed + 1)),
             (movementAcceleration + CustomAcceleration + 1) * Time.fixedDeltaTime);
         m_PlayerRigidbody.velocity = new Vector3(finalVelocity.x, m_PlayerRigidbody.velocity.y, finalVelocity.z);
 
 
-        if (m_PlayerRigidbody.velocity.magnitude.IsFloatWithinLimits(-0.01f, 0.01f))
-        {
-            if (!m_HasAlreadyJumped)
-                ChangeAnimationState(PlayerIdle, ASChangeType.CrossFade);
-            OnPlayerMoveEvent?.Invoke(m_PlayerRigidbody.velocity);
-        }
-        else
-        {
-            if (!m_HasAlreadyJumped)
-                ChangeAnimationState(m_PlayerRigidbody.velocity.magnitude.IsFloatWithinLimits(-5, 5)
-                    ? PlayerWalk
-                    : PlayerRun, ASChangeType.CrossFade);
-        }
+        if (isGrounded)
+            if (m_PlayerRigidbody.velocity.magnitude.IsFloatWithinLimits(-0.01f, 0.01f))
+            {
+                if (!m_HasAlreadyJumped)
+                    ChangeAnimationState(PlayerIdle, ASChangeType.CrossFade);
+                OnPlayerMoveEvent?.Invoke(m_PlayerRigidbody.velocity);
+            }
+            else
+            {
+                if (!m_HasAlreadyJumped)
+                    ChangeAnimationState(m_PlayerRigidbody.velocity.magnitude.IsFloatWithinLimits(-5, 5)
+                        ? PlayerWalk
+                        : PlayerRun, ASChangeType.CrossFade);
+            }
     }
 
     private void JumpHandler()
     {
+        bool isGrounded = IsGrounded();
         //Checks if the player has attempted to jump on the ground and has not already jumped.
-        if (m_PlayerJumpInput && IsGrounded() && !m_HasAlreadyJumped)
+        if (m_PlayerJumpInput && isGrounded && !m_HasAlreadyJumped)
         {
             ChangeAnimationState(PlayerJump);
             var velocity = m_PlayerRigidbody.velocity;
@@ -210,13 +213,13 @@ public class PlayerController : MonoBehaviour
             m_IsNotAlreadyGrounded = false;
         }
 
-        if (m_PlayerRigidbody.velocity.y < -0.01f)
+        if (m_PlayerRigidbody.velocity.y < -0.01f && !isGrounded)
         {
             ChangeAnimationState(PlayerFall, ASChangeType.CrossFade);
         }
 
         //Checks if the player has landed
-        if (m_PlayerRigidbody.velocity.y < -0.01f && IsGrounded() && !m_IsNotAlreadyGrounded)
+        if (m_PlayerRigidbody.velocity.y < -0.01f && isGrounded && !m_IsNotAlreadyGrounded)
         {
             ONPlayerLandingEvent?.Invoke(transform);
             m_HasAlreadyJumped = false;

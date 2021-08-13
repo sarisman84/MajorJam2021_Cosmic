@@ -25,6 +25,7 @@ public class GrappleController : MonoBehaviour
     Camera m_Cam;
 
     public GrapplePoint LatestPoint => m_ClosestPoint;
+    public bool IsGrappling => grapple.GetButton();
 
     // Start is called before the first frame update
     void Start()
@@ -40,25 +41,25 @@ public class GrappleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        bool grappling = grapple.GetButton();
+       
 
         m_ClosestPoint = !m_IsAlreadyGrapling ? GetClosestGrapplePoint() : m_ClosestPoint;
 
-        UpdateGrappleSelectionIndicator(grappling);
+        UpdateGrappleSelectionIndicator(IsGrappling);
 
 
-        if (grappling && !m_IsAlreadyGrapling && m_ClosestPoint)
+        if (IsGrappling && !m_IsAlreadyGrapling && m_ClosestPoint)
         {
             if (m_ClosestPoint)
                 StartGrappling(m_ClosestPoint.transform.position);
         }
 
-        if (m_IsAlreadyGrapling && !grappling)
+        if (m_IsAlreadyGrapling && !IsGrappling)
         {
             StopGrappling();
         }
 
-        m_IsAlreadyGrapling = grappling && m_ClosestPoint;
+        m_IsAlreadyGrapling = IsGrappling && m_ClosestPoint;
     }
 
     /// <summary>

@@ -496,6 +496,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 845212719, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1952466324, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3460139694644883100, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4155127641007957824, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -510,7 +522,7 @@ PrefabInstance:
       objectReference: {fileID: 1365765803}
     - target: {fileID: 4155127642474096693, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4155127642474096693, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
       propertyPath: m_LocalPosition.x
@@ -555,6 +567,10 @@ PrefabInstance:
     - target: {fileID: 4155127642474096694, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
       propertyPath: m_Name
       value: Level 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7334016949770214977, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
@@ -1085,7 +1101,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 420786606904684916, guid: 8a2b3b5e1045cbc4e817e2b66c7e071a, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 420786606904684916, guid: 8a2b3b5e1045cbc4e817e2b66c7e071a, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1239,6 +1255,10 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 184369822}
+    - target: {fileID: 8553397774161756278, guid: 8a2b3b5e1045cbc4e817e2b66c7e071a, type: 3}
+      propertyPath: gizmoPreview
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8a2b3b5e1045cbc4e817e2b66c7e071a, type: 3}
 --- !u!1001 &732920717
@@ -1467,6 +1487,54 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &856670379
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 856670381}
+  - component: {fileID: 856670380}
+  m_Layer: 0
+  m_Name: Checkpoint Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &856670380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856670379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c423a643490c406aafe0eb21ef292e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resetToLastCheckpoint: {fileID: -2103709965566643649, guid: 7ae58d0662766c546a8b06c659571cb7, type: 3}
+  currentPlayerCheckpoints: []
+  onPlayerResetToCheckpoint:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!4 &856670381
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 856670379}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &911036802
 GameObject:
   m_ObjectHideFlags: 0
@@ -2171,7 +2239,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!43 &1222360997
 Mesh:
@@ -3217,7 +3285,7 @@ Transform:
   - {fileID: 1697213685}
   - {fileID: 76290299}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1697213684
 GameObject:
@@ -3609,7 +3677,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4681108320084651932, guid: 597169cbfebffa1439a3c6431f00d50b, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4681108320084651932, guid: 597169cbfebffa1439a3c6431f00d50b, type: 3}
       propertyPath: m_LocalPosition.x
