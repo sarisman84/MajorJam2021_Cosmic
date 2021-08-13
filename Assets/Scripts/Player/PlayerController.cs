@@ -73,7 +73,11 @@ public class PlayerController : MonoBehaviour
             {
                 var position = transform.position;
                 result = new Vector3(position.x,
-                    position.y - (m_PlayerCollider.bounds.size.y / 2f) - (groundColliderSize.y / 2f),
+                    transform.parent.localScale.y > 0
+                        ? (position.y - (m_PlayerCollider.bounds.size.y / 2f) -
+                           (groundColliderSize.y / 2f))
+                        : (position.y + (m_PlayerCollider.bounds.size.y / 2f) +
+                           (groundColliderSize.y / 2f)) + 0.1f,
                     position.z);
             }
 
@@ -201,7 +205,9 @@ public class PlayerController : MonoBehaviour
             var velocity = m_PlayerRigidbody.velocity;
             velocity = new Vector3(velocity.x, 0, velocity.z);
             m_PlayerRigidbody.velocity = velocity;
-            m_PlayerRigidbody.AddForce(Vector3.up * (jumpHeight + CustomJumpHeight), ForceMode.VelocityChange);
+            m_PlayerRigidbody.AddForce(
+                (transform.parent.localScale.y > 0 ? Vector3.up : Vector3.down) * (jumpHeight + CustomJumpHeight),
+                ForceMode.VelocityChange);
             m_HasAlreadyJumped = true;
             ONPlayerJumpEvent?.Invoke(transform);
             AudioManager.Manager.Play("Player_Jump");

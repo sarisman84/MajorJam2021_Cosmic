@@ -9,6 +9,7 @@ TagManager:
   - Teleport/Level 2
   - Teleport/Level 3
   - Teleport/Level 4
+  - World Pivot
   layers:
   - Default
   - TransparentFX

@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
+using System.Text.RegularExpressions;
 
 public class CheatCodeManager : MonoBehaviour
 {
@@ -42,6 +43,11 @@ public class CheatCodeManager : MonoBehaviour
     {
         if (cheatCodeToggle.GetButtonDown())
             m_AttemptACheatCode = !m_AttemptACheatCode;
+        if (!m_AttemptACheatCode && m_CurInputState == 1)
+        {
+            onCheatInputDisable?.Invoke();
+            ResetTextInput();
+        }
 
 
         if (m_AttemptACheatCode)
@@ -52,19 +58,14 @@ public class CheatCodeManager : MonoBehaviour
                 m_CurInputState = 1;
             }
 
-            m_CurRate += Time.deltaTime;
-            if (cheatCodeLibrary.Find(cc => cc.code.Equals(currentInput)) is { } cheat)
+
+            if (cheatCodeLibrary.Find(cc => currentInput.Contains(cc.code)) is { } cheat)
             {
                 cheat.cheatCodeEvent?.Invoke();
-                ResetTextInput();
                 onSuccessfulCheatInput?.Invoke();
-             
-            }
-
-
-            if (m_CurRate >= inputCheckRate)
-            {
+                onCheatInputDisable?.Invoke();
                 ResetTextInput();
+                m_AttemptACheatCode = false;
             }
         }
     }
@@ -72,26 +73,15 @@ public class CheatCodeManager : MonoBehaviour
 
     private void ResetTextInput()
     {
-        m_CurRate = 0;
         currentInput = "";
-        onCheatInputDisable?.Invoke();
         m_CurInputState = 0;
-        m_AttemptACheatCode = false;
     }
 
     private void ConvertInputToText(char c)
     {
         if (m_AttemptACheatCode)
         {
-            if (m_CurrentCheatCodeCharCount >= cheatCodeCharLimit)
-            {
-                m_AttemptACheatCode = false;
-            }
-
             currentInput += c;
-            m_CurRate = 0;
-
-            m_CurrentCheatCodeCharCount++;
         }
     }
 }
