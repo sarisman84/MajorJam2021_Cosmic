@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41db3e4e6e1f4bb4afacc5f0d5835301, type: 3}
-  m_Name: Speeeed
+  m_Script: {fileID: 11500000, guid: f52a181cd18e4db8a29f87984dea9565, type: 3}
+  m_Name: Level 1 Teleport
   m_EditorClassIdentifier: 
-  AbilityID: Speed boost
-  Keybind: {fileID: -6954566277486276780, guid: 7ae58d0662766c546a8b06c659571cb7, type: 3}
-  IsUseable: 1
-  moddedMaxMovementSpeed: 30
-  moddedAcceleration: 5
+  abilityID: TP/Level1
+  isUsable: 0
+  keybind: {fileID: 0}
+  keybindingType: 0
+  abilityDuration: 0
+  targetPositionTag: Teleport/Level 1
+  teleportPositionOffset: {x: 0, y: 0, z: 0}

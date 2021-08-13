@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - GrapplePoint
+  - Teleport/Level 1
+  - Teleport/Level 2
+  - Teleport/Level 3
+  - Teleport/Level 4
   layers:
   - Default
   - TransparentFX

@@ -1,0 +1,18 @@
+{
+    "name": "MajorJam_Player_CheatAbilities",
+    "rootNamespace": "",
+    "references": [
+        "GUID:75469ad4d38634e559750d17036d5f7c",
+        "GUID:36b2b84419e467e44bd5a7980dbd480f",
+        "GUID:00412d419235a324d97bb2d06a09a9df"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
