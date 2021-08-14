@@ -33,9 +33,11 @@ namespace MajorJam.System
                     m_ReverseGravity ? new Vector3(1, -1, 1) : Vector3.one;
 
                 Physics.gravity = new Vector3(Physics.gravity.x,
-                    m_ReverseGravity
-                        ? Mathf.Abs(Physics.gravity.y)
-                        : -Mathf.Abs(Physics.gravity.y), Physics.gravity.z);
+                    !m_ReverseGravity
+                        ? -Mathf.Abs(Physics.gravity.y)
+                        : Mathf.Abs(Physics.gravity.y), Physics.gravity.z);
+
+                Debug.Log(Physics.gravity);
 
 
                 isUsable = false;

@@ -141,7 +141,7 @@ public class PlayerController : MonoBehaviour
         CrossFade
     }
 
-    private void ChangeAnimationState(string newState, ASChangeType type = ASChangeType.None)
+    private void ChangeAnimationState(string newState, ASChangeType type = ASChangeType.None, float duration = 0.5f)
     {
         if (m_CurrentAnimState == newState) return;
 
@@ -151,7 +151,7 @@ public class PlayerController : MonoBehaviour
                 m_PlayerAnimController.Play(newState);
                 break;
             case ASChangeType.CrossFade:
-                m_PlayerAnimController.CrossFade(newState, 0.5f);
+                m_PlayerAnimController.CrossFade(newState, duration);
                 break;
         }
 
@@ -275,7 +275,7 @@ public class PlayerController : MonoBehaviour
 
         if (isFalling && !isGrounded)
         {
-            ChangeAnimationState(PlayerFall, ASChangeType.CrossFade);
+            ChangeAnimationState(PlayerFall, ASChangeType.CrossFade, 0.85f);
         }
 
         //Checks if the player has landed
@@ -296,7 +296,7 @@ public class PlayerController : MonoBehaviour
     {
         if (transform.parent.localScale.y > 0 ? m_PlayerRigidbody.velocity.y < 0 : m_PlayerRigidbody.velocity.y > 0)
         {
-            m_PlayerRigidbody.velocity += (transform.parent.localScale.y > 0 ? Vector3.up : Vector3.down) *
+            m_PlayerRigidbody.velocity += transform.up.normalized *
                                           (Physics.gravity.y * ((fallMultiplier + CustomFallMultiplier) - 1) *
                                            Time.deltaTime);
         }
@@ -304,7 +304,7 @@ public class PlayerController : MonoBehaviour
             ? m_PlayerRigidbody.velocity.y > 0
             : m_PlayerRigidbody.velocity.y < 0) && !m_PlayerJumpInput)
         {
-            m_PlayerRigidbody.velocity += (transform.parent.localScale.y > 0 ? Vector3.up : Vector3.down) *
+            m_PlayerRigidbody.velocity += transform.up.normalized *
                                           (Physics.gravity.y * ((lowJumpHeight + CustomLowJumpHeight) - 1) *
                                            Time.deltaTime);
         }
