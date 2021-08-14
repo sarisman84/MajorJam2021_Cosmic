@@ -11,6 +11,7 @@ TagManager:
   - Teleport/Level 4
   - World Pivot
   - Teleport/Level 3 Fake Ending
+  - Player/Model
   layers:
   - Default
   - TransparentFX

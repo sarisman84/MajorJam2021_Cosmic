@@ -23,14 +23,17 @@ namespace MajorJam.System
             if (isUsable)
             {
                 m_ReverseGravity = !m_ReverseGravity;
+                playerController.IsGravityReversed = m_ReverseGravity;
                 Transform worldPivot = GameObject.FindGameObjectWithTag("World Pivot").transform;
 
                 worldPivot.transform.rotation = m_ReverseGravity
                     ? Quaternion.Euler(0, 0, 180)
                     : Quaternion.identity;
 
-                playerController.transform.parent.localScale =
-                    m_ReverseGravity ? new Vector3(1, -1, 1) : Vector3.one;
+                Transform model = GameObject.FindGameObjectWithTag("Player/Model").transform;
+                model.transform.localRotation = worldPivot.transform.rotation;
+                model.transform.localScale = m_ReverseGravity ? new Vector3(-1, 1, 1) : Vector3.one;
+                model.transform.localPosition = m_ReverseGravity ? Vector3.up : Vector3.down;
 
                 Physics.gravity = new Vector3(Physics.gravity.x,
                     !m_ReverseGravity
@@ -38,6 +41,11 @@ namespace MajorJam.System
                         : Mathf.Abs(Physics.gravity.y), Physics.gravity.z);
 
                 Debug.Log(Physics.gravity);
+
+                var velocity = playerController.physics.velocity;
+                velocity = new Vector3(velocity.x, 0,
+                    velocity.z);
+                playerController.physics.velocity = velocity;
 
 
                 isUsable = false;

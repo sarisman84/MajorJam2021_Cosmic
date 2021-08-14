@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
     private CinemachineFreeLook.Orbit m_CinemachineTopOrbit, m_CinemacineMidOrbitHeight, m_CinemachineBottomOrbit;
     private Vector3 m_CinemachineTopTOOffset, m_CinemachineMidTOOffset, m_CinemachineBottomTOOffset;
     private CinemachineComposer m_TopCComposer, m_MidCComposer, m_BottomCComposer;
+    private Cinemachine.AxisState m_CinemachineVerticalInputAcc;
+
 
     private string m_CurrentAnimState;
 
@@ -79,7 +81,7 @@ public class PlayerController : MonoBehaviour
             {
                 var position = transform.position;
                 result = new Vector3(position.x,
-                    transform.parent.localScale.y > 0
+                    !IsGravityReversed
                         ? (position.y - (m_PlayerCollider.bounds.size.y / 2f) -
                            (groundColliderSize.y / 2f))
                         : (position.y + (m_PlayerCollider.bounds.size.y / 2f) +
@@ -95,6 +97,10 @@ public class PlayerController : MonoBehaviour
     {
         get { return new Vector3(groundColliderSize.x / 2f, groundColliderSize.y, groundColliderSize.z / 2f); }
     }
+
+
+    public Rigidbody physics => m_PlayerRigidbody;
+    public bool IsGravityReversed { private get; set; }
 
     #endregion
 
@@ -133,6 +139,8 @@ public class PlayerController : MonoBehaviour
         m_CinemachineTopTOOffset = m_TopCComposer.m_TrackedObjectOffset;
         m_CinemachineMidTOOffset = m_MidCComposer.m_TrackedObjectOffset;
         m_CinemachineBottomTOOffset = m_BottomCComposer.m_TrackedObjectOffset;
+
+        m_CinemachineVerticalInputAcc = m_CinemachineFreeLook.m_YAxis;
     }
 
     enum ASChangeType
@@ -196,21 +204,38 @@ public class PlayerController : MonoBehaviour
     private void UpdateCameraOrientation()
     {
         //Invert the heights,radius and offsets on top and bottom orbits upon being upside down.
-        bool isRightsideUp = transform.parent.localScale.y > 0;
+
 
         //Update top orbit height and offset position based if the player is upsidedown or not.
-        m_CinemachineFreeLook.m_Orbits[0] = isRightsideUp
+        m_CinemachineFreeLook.m_Orbits[0] = !IsGravityReversed
             ? m_CinemachineTopOrbit
             : m_CinemachineBottomOrbit;
-        m_TopCComposer.m_TrackedObjectOffset = isRightsideUp ? m_CinemachineTopTOOffset : -m_CinemachineBottomTOOffset;
+        m_TopCComposer.m_TrackedObjectOffset =
+            !IsGravityReversed ? m_CinemachineTopTOOffset : -m_CinemachineBottomTOOffset;
 
 
         //Update bottom orbit height and offset position based if the player is upsidedown or not.
-        m_CinemachineFreeLook.m_Orbits[2] = isRightsideUp
+        m_CinemachineFreeLook.m_Orbits[2] = !IsGravityReversed
             ? m_CinemachineBottomOrbit
             : m_CinemachineTopOrbit;
         m_BottomCComposer.m_TrackedObjectOffset =
-            isRightsideUp ? m_CinemachineBottomTOOffset : m_CinemachineTopTOOffset;
+            !IsGravityReversed ? m_CinemachineBottomTOOffset : m_CinemachineTopTOOffset;
+
+        
+        //Update vertical camera speed and acceleration input values when gravity is reversed.
+        // m_CinemachineFreeLook.m_YAxis.m_AccelTime = !IsGravityReversed
+        //     ? m_CinemachineVerticalInputAcc.m_AccelTime
+        //     : -m_CinemachineVerticalInputAcc.m_AccelTime;
+        //
+        // m_CinemachineFreeLook.m_YAxis.m_DecelTime = !IsGravityReversed
+        //     ? m_CinemachineVerticalInputAcc.m_DecelTime
+        //     : -m_CinemachineVerticalInputAcc.m_DecelTime;
+        //
+        // m_CinemachineFreeLook.m_YAxis.m_MaxSpeed = !IsGravityReversed
+        //     ? m_CinemachineVerticalInputAcc.m_MaxSpeed
+        //     : -m_CinemachineVerticalInputAcc.m_MaxSpeed;
+
+        m_CinemachineFreeLook.m_YAxis.m_InvertInput = !IsGravityReversed;
     }
 
     private void FixedUpdate()
@@ -256,7 +281,7 @@ public class PlayerController : MonoBehaviour
             velocity = new Vector3(velocity.x, 0, velocity.z);
             m_PlayerRigidbody.velocity = velocity;
             m_PlayerRigidbody.AddForce(
-                (transform.parent.localScale.y > 0 ? Vector3.up : Vector3.down) * (jumpHeight + CustomJumpHeight),
+                (!IsGravityReversed ? Vector3.up : Vector3.down) * (jumpHeight + CustomJumpHeight),
                 ForceMode.VelocityChange);
             m_HasAlreadyJumped = true;
             ONPlayerJumpEvent?.Invoke(transform);
@@ -269,7 +294,7 @@ public class PlayerController : MonoBehaviour
             m_IsNotAlreadyGrounded = false;
         }
 
-        bool isFalling = (transform.parent.localScale.y > 0
+        bool isFalling = (!IsGravityReversed
             ? m_PlayerRigidbody.velocity.y < -0.01f
             : m_PlayerRigidbody.velocity.y > 0.01f);
 
@@ -294,13 +319,13 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void UpdateGravity()
     {
-        if (transform.parent.localScale.y > 0 ? m_PlayerRigidbody.velocity.y < 0 : m_PlayerRigidbody.velocity.y > 0)
+        if (!IsGravityReversed ? m_PlayerRigidbody.velocity.y < 0 : m_PlayerRigidbody.velocity.y > 0)
         {
             m_PlayerRigidbody.velocity += transform.up.normalized *
                                           (Physics.gravity.y * ((fallMultiplier + CustomFallMultiplier) - 1) *
                                            Time.deltaTime);
         }
-        else if ((transform.parent.localScale.y > 0
+        else if ((!IsGravityReversed
             ? m_PlayerRigidbody.velocity.y > 0
             : m_PlayerRigidbody.velocity.y < 0) && !m_PlayerJumpInput)
         {
