@@ -17,7 +17,7 @@ namespace Level
 
         private CheckpointInfo m_LatestPlayerInfo, m_LatestPlayerCameraInfo;
         private GameObject m_PlayerController;
-        private CinemachineFreeLook m_PlayerCamera;
+        private Camera m_PlayerCamera;
 
 
         #region Singleton Implementation
@@ -30,7 +30,7 @@ namespace Level
         private void Awake()
         {
             m_PlayerController = GameObject.FindGameObjectWithTag("Player");
-            m_PlayerCamera = FindObjectOfType<CinemachineFreeLook>();
+            m_PlayerCamera = Camera.main;
             currentPlayerCheckpoints.AddRange(FindObjectsOfType<Checkpoint>());
 
             foreach (var checkpoint in currentPlayerCheckpoints)
