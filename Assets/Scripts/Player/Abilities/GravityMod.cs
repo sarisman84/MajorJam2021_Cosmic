@@ -13,10 +13,16 @@ namespace MajorJam.System
             m_ReverseGravity = false;
         }
 
+        private void OnDisable()
+        {
+            m_ReverseGravity = false;
+        }
+
         protected override void OnAbilityUse(PlayerController playerController)
         {
             if (isUsable)
             {
+                m_ReverseGravity = !m_ReverseGravity;
                 Transform worldPivot = GameObject.FindGameObjectWithTag("World Pivot").transform;
 
                 worldPivot.transform.rotation = m_ReverseGravity
@@ -31,8 +37,6 @@ namespace MajorJam.System
                         ? Mathf.Abs(Physics.gravity.y)
                         : -Mathf.Abs(Physics.gravity.y), Physics.gravity.z);
 
-
-                m_ReverseGravity = !m_ReverseGravity;
 
                 isUsable = false;
             }

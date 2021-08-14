@@ -290,15 +290,17 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void UpdateGravity()
     {
-        if (m_PlayerRigidbody.velocity.y < 0)
+        if (transform.parent.localScale.y > 0 ? m_PlayerRigidbody.velocity.y < 0 : m_PlayerRigidbody.velocity.y > 0)
         {
-            m_PlayerRigidbody.velocity += Vector3.up *
+            m_PlayerRigidbody.velocity += (transform.parent.localScale.y > 0 ? Vector3.up : Vector3.down) *
                                           (Physics.gravity.y * ((fallMultiplier + CustomFallMultiplier) - 1) *
                                            Time.deltaTime);
         }
-        else if (m_PlayerRigidbody.velocity.y > 0 && !m_PlayerJumpInput)
+        else if ((transform.parent.localScale.y > 0
+            ? m_PlayerRigidbody.velocity.y > 0
+            : m_PlayerRigidbody.velocity.y < 0) && !m_PlayerJumpInput)
         {
-            m_PlayerRigidbody.velocity += Vector3.up *
+            m_PlayerRigidbody.velocity += (transform.parent.localScale.y > 0 ? Vector3.up : Vector3.down) *
                                           (Physics.gravity.y * ((lowJumpHeight + CustomLowJumpHeight) - 1) *
                                            Time.deltaTime);
         }
