@@ -12,14 +12,23 @@ public class HelperCounter : MonoBehaviour
     public void StartTimer()
     {
         currentTime = "";
-        Stopwatch ??= new Stopwatch();
-        Stopwatch.StartNew();
+
+
+        if (Stopwatch == null)
+        {
+            Stopwatch = new Stopwatch();
+            Stopwatch.Start();
+        }
+        else
+        {
+            Stopwatch.Restart();
+        }
     }
 
     public void EndTimer()
     {
-        Stopwatch.Stop();
         currentTime = $"Cur Time:{Stopwatch.Elapsed.Minutes} minutes and {Stopwatch.Elapsed.Seconds} seconds";
+        Stopwatch.Stop();
         Debug.Log(currentTime);
     }
 }

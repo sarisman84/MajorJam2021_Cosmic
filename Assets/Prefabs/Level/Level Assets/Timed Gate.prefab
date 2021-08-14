@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1668466351393871663}
   - component: {fileID: 88225410277771236}
-  - component: {fileID: 2658089937713113707}
-  - component: {fileID: 6672572154166668117}
   m_Layer: 0
   m_Name: Timed Gate
   m_TagString: Untagged
@@ -47,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e890764a215168c4bb57ee47ed24579e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ammOfTimeUntilEventEnds: 0
+  ammOfTimeUntilEventEnds: 2
   onTimerStart:
     m_PersistentCalls:
       m_Calls:
@@ -90,65 +88,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &2658089937713113707
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3036889870641986909}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 093d490e29e54050890cb8955f032978, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onTriggerEnter:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 88225410277771236}
-        m_TargetAssemblyTypeName: TimedEvent, Assembly-CSharp
-        m_MethodName: StartTimer
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 8870515289859939813}
-        m_TargetAssemblyTypeName: PressurePlate, Assembly-CSharp
-        m_MethodName: OnPressurePlatePressed
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onTriggerStay:
-    m_PersistentCalls:
-      m_Calls: []
-  onTriggerExit:
-    m_PersistentCalls:
-      m_Calls: []
-  showCollisionGizmo: 1
---- !u!65 &6672572154166668117
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3036889870641986909}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 3, y: 3, z: 3}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3405597832271269669
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -159,6 +98,14 @@ PrefabInstance:
     - target: {fileID: 46378031031569504, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 46378031031569504, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 46378031031569504, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 46378031031569504, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
       propertyPath: m_LocalPosition.x
@@ -204,6 +151,78 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pressure Plate
       objectReference: {fileID: 0}
+    - target: {fileID: 3657634700816391517, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983798374121899257, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983798374121899257, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983798374121899257, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983798374121899257, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 88225410277771236}
+    - target: {fileID: 5983798374121899257, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 8870515289859939813}
+    - target: {fileID: 5983798374121899257, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983798374121899257, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983798374121899257, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983798374121899257, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: StartTimer
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983798374121899257, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: OnPressurePlatePressed
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983798374121899257, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
+      value: StartTimer
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983798374121899257, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: TimedEvent, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983798374121899257, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: PressurePlate, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983798374121899257, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_TargetAssemblyTypeName
+      value: HelperCounter, Level
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983798374121899257, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983798374121899257, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5983798374121899257, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
+      propertyPath: onTriggerEnter.m_PersistentCalls.m_Calls.Array.data[2].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e99d0cea6702af448a37de09e1d5ee31, type: 3}
 --- !u!4 &3451967047344997189 stripped
@@ -229,9 +248,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1668466351393871663}
     m_Modifications:
+    - target: {fileID: 856207681905706915, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 15.675257
+      objectReference: {fileID: 0}
+    - target: {fileID: 856207681905706915, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 856207681905706915, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 856207681905706915, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.56
+      objectReference: {fileID: 0}
     - target: {fileID: 2816119965928513647, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
       propertyPath: m_Name
       value: Gate
+      objectReference: {fileID: 0}
+    - target: {fileID: 3445807617809596691, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
+      propertyPath: openGatePosition.y
+      value: -16
+      objectReference: {fileID: 0}
+    - target: {fileID: 5078169875916812701, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.6439
+      objectReference: {fileID: 0}
+    - target: {fileID: 5078169875916812701, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 20.932451
+      objectReference: {fileID: 0}
+    - target: {fileID: 5078169875916812701, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.38
       objectReference: {fileID: 0}
     - target: {fileID: 5322395654654623288, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
       propertyPath: m_RootOrder
@@ -239,15 +290,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5322395654654623288, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 5.53
       objectReference: {fileID: 0}
     - target: {fileID: 5322395654654623288, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.84
       objectReference: {fileID: 0}
     - target: {fileID: 5322395654654623288, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.05
+      value: 61.6
       objectReference: {fileID: 0}
     - target: {fileID: 5322395654654623288, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
       propertyPath: m_LocalRotation.w
@@ -276,6 +327,18 @@ PrefabInstance:
     - target: {fileID: 5322395654654623288, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7099605119032618114, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2.6439
+      objectReference: {fileID: 0}
+    - target: {fileID: 7099605119032618114, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 20.932451
+      objectReference: {fileID: 0}
+    - target: {fileID: 7099605119032618114, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 8.38
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a807b0cf66b8ea9409ea23f333dbf761, type: 3}

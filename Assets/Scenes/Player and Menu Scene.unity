@@ -556,7 +556,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: cheatCodeLibrary.Array.data[3].code
-      value: tplvl3end
+      value: tpendlvl3
       objectReference: {fileID: 0}
     - target: {fileID: 573159233, guid: 24491f3c4a134ee49b30703d76e2f121, type: 3}
       propertyPath: cheatCodeLibrary.Array.data[4].code

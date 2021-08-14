@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Cinemachine;
 using MajorJam.System;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -9,11 +10,11 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public InputActionReference movementInput, lookInput, jumpInput;
-    [Space] public float maxMovementSpeed;
+    [Header("Movement Settings")] public float maxMovementSpeed;
     public float movementAcceleration;
     public float rotationSmoothAmm;
     public float smoothMovementAmm;
-    public float jumpHeight;
+    [Header("Jump Settings")] public float jumpHeight;
     public float lowJumpHeight;
     public float fallMultiplier;
     [Space] public LayerMask groundMask;
@@ -26,8 +27,13 @@ public class PlayerController : MonoBehaviour
     private bool m_PlayerJumpInput;
     private Collider m_PlayerCollider;
     private Camera m_Camera;
+    private CinemachineFreeLook m_CinemachineFreeLook;
     private bool m_HasAlreadyJumped;
     private bool m_IsNotAlreadyGrounded;
+
+    private CinemachineFreeLook.Orbit m_CinemachineTopOrbit, m_CinemacineMidOrbitHeight, m_CinemachineBottomOrbit;
+    private Vector3 m_CinemachineTopTOOffset, m_CinemachineMidTOOffset, m_CinemachineBottomTOOffset;
+    private CinemachineComposer m_TopCComposer, m_MidCComposer, m_BottomCComposer;
 
     private string m_CurrentAnimState;
 
@@ -104,11 +110,29 @@ public class PlayerController : MonoBehaviour
         m_PlayerRigidbody = GetComponent<Rigidbody>();
         m_PlayerCollider = GetComponent<Collider>();
         m_Camera = Camera.main;
+        m_CinemachineFreeLook = transform.parent.GetComponentInChildren<CinemachineFreeLook>();
 
         SetCursorActive(false);
+        CinemachineCameraSetup();
 
         // ONPlayerJumpEvent += controller => Debug.Log($"{controller.gameObject.name} has Jumped!");
         // ONPlayerLandingEvent += controller => Debug.Log($"{controller.gameObject.name} has landed!");
+    }
+
+    private void CinemachineCameraSetup()
+    {
+        m_CinemachineTopOrbit = m_CinemachineFreeLook.m_Orbits[0];
+        m_CinemacineMidOrbitHeight = m_CinemachineFreeLook.m_Orbits[1];
+        m_CinemachineBottomOrbit = m_CinemachineFreeLook.m_Orbits[2];
+
+        m_TopCComposer = m_CinemachineFreeLook.GetRig(0).GetCinemachineComponent<CinemachineComposer>();
+        m_MidCComposer = m_CinemachineFreeLook.GetRig(1).GetCinemachineComponent<CinemachineComposer>();
+        m_BottomCComposer = m_CinemachineFreeLook.GetRig(2).GetCinemachineComponent<CinemachineComposer>();
+
+
+        m_CinemachineTopTOOffset = m_TopCComposer.m_TrackedObjectOffset;
+        m_CinemachineMidTOOffset = m_MidCComposer.m_TrackedObjectOffset;
+        m_CinemachineBottomTOOffset = m_BottomCComposer.m_TrackedObjectOffset;
     }
 
     enum ASChangeType
@@ -157,10 +181,36 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateInput()
     {
+        FetchPlayerInput();
+        UpdateCameraOrientation();
+    }
+
+    private void FetchPlayerInput()
+    {
         m_PlayerRawInput = movementInput.GetAxisRaw().ToVector3XZ();
         m_PlayerInput = m_Camera.transform.forward * m_PlayerRawInput.z + m_Camera.transform.right * m_PlayerRawInput.x;
         m_PlayerInput = new Vector3(m_PlayerInput.x, 0, m_PlayerInput.z);
         m_PlayerJumpInput = jumpInput.GetButton();
+    }
+
+    private void UpdateCameraOrientation()
+    {
+        //Invert the heights,radius and offsets on top and bottom orbits upon being upside down.
+        bool isRightsideUp = transform.parent.localScale.y > 0;
+
+        //Update top orbit height and offset position based if the player is upsidedown or not.
+        m_CinemachineFreeLook.m_Orbits[0] = isRightsideUp
+            ? m_CinemachineTopOrbit
+            : m_CinemachineBottomOrbit;
+        m_TopCComposer.m_TrackedObjectOffset = isRightsideUp ? m_CinemachineTopTOOffset : -m_CinemachineBottomTOOffset;
+
+
+        //Update bottom orbit height and offset position based if the player is upsidedown or not.
+        m_CinemachineFreeLook.m_Orbits[2] = isRightsideUp
+            ? m_CinemachineBottomOrbit
+            : m_CinemachineTopOrbit;
+        m_BottomCComposer.m_TrackedObjectOffset =
+            isRightsideUp ? m_CinemachineBottomTOOffset : m_CinemachineTopTOOffset;
     }
 
     private void FixedUpdate()

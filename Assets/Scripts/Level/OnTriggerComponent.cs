@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -9,6 +10,8 @@ namespace Level
     {
         public UnityEvent<Collider> onTriggerEnter, onTriggerStay, onTriggerExit;
         public bool showCollisionGizmo;
+
+
         private Collider m_Col;
 
 
@@ -30,11 +33,10 @@ namespace Level
 
         private void OnDrawGizmos()
         {
-       
             if (showCollisionGizmo)
             {
-                m_Col = m_Col ? m_Col : GetComponent<Collider>();
-                Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, m_Col.bounds.size);
+                m_Col = m_Col ? m_Col : GetComponents<Collider>().ToList().Find(c => c.isTrigger);
+                Gizmos.matrix = Matrix4x4.TRS(m_Col.bounds.center, transform.rotation, m_Col.bounds.size);
                 Gizmos.color = Color.magenta - new Color(0, 0, 0, 0.75f);
                 Gizmos.DrawCube(Vector3.zero, Vector3.one);
             }
