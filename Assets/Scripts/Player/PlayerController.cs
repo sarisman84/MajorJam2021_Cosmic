@@ -269,13 +269,17 @@ public class PlayerController : MonoBehaviour
             m_IsNotAlreadyGrounded = false;
         }
 
-        if (m_PlayerRigidbody.velocity.y < -0.01f && !isGrounded)
+        bool isFalling = (transform.parent.localScale.y > 0
+            ? m_PlayerRigidbody.velocity.y < -0.01f
+            : m_PlayerRigidbody.velocity.y > 0.01f);
+
+        if (isFalling && !isGrounded)
         {
             ChangeAnimationState(PlayerFall, ASChangeType.CrossFade);
         }
 
         //Checks if the player has landed
-        if (m_PlayerRigidbody.velocity.y < -0.01f && isGrounded && !m_IsNotAlreadyGrounded)
+        if (isFalling && isGrounded && !m_IsNotAlreadyGrounded)
         {
             ONPlayerLandingEvent?.Invoke(transform);
             m_HasAlreadyJumped = false;
