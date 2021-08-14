@@ -8,14 +8,16 @@ namespace MajorJam.System
     {
         private bool m_ReverseGravity = false;
 
-        private void OnEnable()
+        protected override void OnEnable()
         {
+            base.OnEnable();
             m_ReverseGravity = false;
         }
 
         private void OnDisable()
         {
             m_ReverseGravity = false;
+            
         }
 
         protected override void OnAbilityUse(PlayerController playerController)

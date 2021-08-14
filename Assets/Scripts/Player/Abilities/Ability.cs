@@ -24,6 +24,13 @@ namespace MajorJam.System
         private bool m_AbilityInUse;
 
         protected bool AbilityInUse => m_AbilityInUse;
+        public bool CanUseAbility { get; set; }
+
+        protected virtual void OnEnable()
+        {
+            m_AbilityInUse = false;
+            CanUseAbility = false;
+        }
 
         public void Use(PlayerController playerController)
         {

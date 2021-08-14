@@ -23,7 +23,7 @@ namespace MajorJam.System
         {
             foreach (var ability in currentAbilities)
             {
-                if (ability.isUsable)
+                if (ability.CanUseAbility || ability.isUsable)
                     ability.Use(_playerController);
             }
         }
@@ -49,8 +49,8 @@ namespace MajorJam.System
         {
             if (currentAbilities.Find(a => a.abilityID.Equals(id)) is {isUsable: false} foundAbility)
             {
-                foundAbility.isUsable = true;
-                InputManager.SetInputActive(foundAbility.isUsable, foundAbility.keybind);
+                foundAbility.CanUseAbility = true;
+                InputManager.SetInputActive(foundAbility.CanUseAbility, foundAbility.keybind);
             }
         }
     }

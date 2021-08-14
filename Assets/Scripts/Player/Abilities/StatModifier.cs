@@ -14,7 +14,7 @@ namespace MajorJam.System
 
         protected override void OnAbilityUse(PlayerController playerController)
         {
-            SetStatsToPlayer(playerController, AbilityInUse);
+            SetStatsToPlayer(playerController, !AbilityInUse);
         }
 
         private void SetStatsToPlayer(PlayerController playerController, bool reset = false)
