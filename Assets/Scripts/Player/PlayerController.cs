@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
 using MajorJam.System;
+using Systems;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,6 +36,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 m_CinemachineTopTOOffset, m_CinemachineMidTOOffset, m_CinemachineBottomTOOffset;
     private CinemachineComposer m_TopCComposer, m_MidCComposer, m_BottomCComposer;
     private Cinemachine.AxisState m_CinemachineVerticalInputAcc;
+
+    private float m_CCurXSpeed, m_CCurYSpeed;
 
 
     private string m_CurrentAnimState;
@@ -118,11 +121,28 @@ public class PlayerController : MonoBehaviour
         m_Camera = Camera.main;
         m_CinemachineFreeLook = transform.parent.GetComponentInChildren<CinemachineFreeLook>();
 
+
         SetCursorActive(false);
         CinemachineCameraSetup();
 
+        UIManager.Get.ONPauseEvent += OnPauseEvent;
+
         // ONPlayerJumpEvent += controller => Debug.Log($"{controller.gameObject.name} has Jumped!");
         // ONPlayerLandingEvent += controller => Debug.Log($"{controller.gameObject.name} has landed!");
+    }
+
+    private void OnPauseEvent(bool isPaused)
+    {
+        m_CCurXSpeed = m_CinemachineFreeLook.m_XAxis.m_MaxSpeed != 0
+            ? m_CinemachineFreeLook.m_XAxis.m_MaxSpeed
+            : m_CCurXSpeed;
+        m_CCurYSpeed = m_CinemachineFreeLook.m_YAxis.m_MaxSpeed != 0
+            ? m_CinemachineFreeLook.m_YAxis.m_MaxSpeed
+            : m_CCurYSpeed;
+
+        InputManager.SetInputActive(!isPaused, jumpInput, lookInput, movementInput);
+        m_CinemachineFreeLook.m_XAxis.m_MaxSpeed = !isPaused ? m_CCurXSpeed : 0;
+        m_CinemachineFreeLook.m_YAxis.m_MaxSpeed = !isPaused ? m_CCurYSpeed : 0;
     }
 
     private void CinemachineCameraSetup()

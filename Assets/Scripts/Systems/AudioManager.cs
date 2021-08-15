@@ -42,6 +42,15 @@ namespace MajorJam.System
         }
 
 
+        public void SetVolumeOnAll(float volume)
+        {
+            foreach (var clipInfo in audioClips)
+            {
+                clipInfo.Player.volume = volume;
+            }
+        }
+
+
         
         
         public void Play(string clipName)

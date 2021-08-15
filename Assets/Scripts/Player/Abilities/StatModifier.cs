@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Systems;
+using UnityEngine;
 using NotImplementedException = System.NotImplementedException;
 
 namespace MajorJam.System
@@ -10,6 +11,7 @@ namespace MajorJam.System
         public float acceleration;
         [Header("Jump Mod")] public float jumpHeight;
         public float lowJumpHeight, fallMultiplier;
+        
 
 
         protected override void OnAbilityUse(PlayerController playerController)

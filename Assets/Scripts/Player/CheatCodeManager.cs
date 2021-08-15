@@ -16,7 +16,7 @@ public class CheatCodeManager : MonoBehaviour
     public List<CheatCode> cheatCodeLibrary;
     public float inputCheckRate;
     public int cheatCodeCharLimit = 20;
-    [Space] public UnityEvent onCheatInputActive, onCheatInputDisable, onSuccessfulCheatInput;
+    [Space] public UnityEvent onCheatInputActive, onCheatInputDisable, onSuccessfulCheatInput, onTypingWhileCheating;
 
     private float m_CurRate = 0;
     private bool m_AttemptACheatCode;
@@ -82,6 +82,7 @@ public class CheatCodeManager : MonoBehaviour
         if (m_AttemptACheatCode)
         {
             currentInput += c;
+            onTypingWhileCheating?.Invoke();
         }
     }
 }

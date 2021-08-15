@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Systems;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -16,6 +17,15 @@ namespace MajorJam.System
         private void Awake()
         {
             _playerController = GetComponent<PlayerController>();
+            UIManager.Get.ONPauseEvent += OnPauseEvent;
+        }
+
+        private void OnPauseEvent(bool isPausing)
+        {
+            foreach (var ability in currentAbilities)
+            {
+                InputManager.SetInputActive(!isPausing && ability.CanUseAbility, ability.keybind);
+            }
         }
 
 

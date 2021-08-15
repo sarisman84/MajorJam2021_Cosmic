@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Systems;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -19,6 +20,9 @@ namespace MajorJam.System
         [Space] public InputActionReference keybind;
         public KeybindType keybindingType;
         [Header("Keybind Settings: Press")] public float abilityDuration;
+
+        [Header("Particle Effect during Ability Useage")]
+        public string particleEffectName;
 
 
         private bool m_AbilityInUse;
@@ -52,6 +56,15 @@ namespace MajorJam.System
                 }
             }
 
+            if (!m_AbilityInUse)
+            {
+                ParticleSystemManager.Get.Play(particleEffectName, playerController.transform.position);
+            }
+            else
+            {
+                ParticleSystemManager.Get.Stop(particleEffectName);
+            }
+            
             OnAbilityUse(playerController);
         }
 

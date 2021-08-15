@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Linq;
+using Systems;
 
 public class GrappleController : MonoBehaviour
 {
@@ -36,6 +37,12 @@ public class GrappleController : MonoBehaviour
         m_GrappleSelectionRenderer = new GameObject("Grapple Point Indicator").AddComponent<SpriteRenderer>();
         m_GrappleSelectionRenderer.sprite = grappleSelectionIndicator;
         m_GrappleSelectionRenderer.gameObject.SetActive(false);
+        UIManager.Get.ONPauseEvent += OnPauseEvent;
+    }
+
+    private void OnPauseEvent(bool isPausing)
+    {
+        InputManager.SetInputActive(!isPausing, grapple);
     }
 
     // Update is called once per frame
