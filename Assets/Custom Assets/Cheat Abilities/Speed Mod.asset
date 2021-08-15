@@ -17,8 +17,8 @@ MonoBehaviour:
   keybind: {fileID: -6954566277486276780, guid: 7ae58d0662766c546a8b06c659571cb7, type: 3}
   keybindingType: 1
   abilityDuration: 0
-  maxMovementSpeed: 15
-  acceleration: 3
+  maxMovementSpeed: 22
+  acceleration: 10
   jumpHeight: 0
   lowJumpHeight: 0
   fallMultiplier: 0

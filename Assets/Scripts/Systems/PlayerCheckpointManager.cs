@@ -48,9 +48,9 @@ namespace Level
 
         private void OnCheckpointTrigger(List<Checkpoint> playerCheckpoints, Checkpoint self, Collider other)
         {
-            if (other.CompareTag("Player") && !self.HasAlreadySaved)
+            if (other.CompareTag("Player") is { } player && !self.HasAlreadySaved)
             {
-                m_LatestPlayerInfo = new CheckpointInfo(self.transform.position, self.transform.rotation);
+                m_LatestPlayerInfo = new CheckpointInfo(self.transform.position + Vector3.up, self.transform.rotation);
                 Transform cam = m_PlayerCamera.transform;
                 m_LatestPlayerCameraInfo = new CheckpointInfo(cam.position, cam.rotation);
                 self.HasAlreadySaved = true;

@@ -458,26 +458,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 845212719, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1952466324, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3417926062749382549, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 33.136005
-      objectReference: {fileID: 0}
-    - target: {fileID: 3417926062749382549, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -9.2552
-      objectReference: {fileID: 0}
-    - target: {fileID: 3460139694644883100, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
-      propertyPath: m_Layer
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4155127641007957824, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -537,10 +517,6 @@ PrefabInstance:
     - target: {fileID: 4155127642474096694, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
       propertyPath: m_Name
       value: Level 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 7334016949770214977, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
-      propertyPath: m_Layer
-      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2bbfc746fe4d9943857ad5b165f8385, type: 3}
@@ -1256,10 +1232,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 464107084144962995, guid: f83465644bd343343b3ae5ecb5e7559d, type: 3}
-      propertyPath: m_RootOrder
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 836825370010863987, guid: f83465644bd343343b3ae5ecb5e7559d, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -2666,10 +2638,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1799725243, guid: 597169cbfebffa1439a3c6431f00d50b, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4681108320084651932, guid: 597169cbfebffa1439a3c6431f00d50b, type: 3}
       propertyPath: m_RootOrder
       value: 5

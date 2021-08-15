@@ -22,7 +22,7 @@ namespace MajorJam.System
 
         protected override void OnAbilityUse(PlayerController playerController)
         {
-            if (isUsable)
+            if (CanUseAbility)
             {
                 m_ReverseGravity = !m_ReverseGravity;
                 playerController.IsGravityReversed = m_ReverseGravity;
@@ -50,7 +50,7 @@ namespace MajorJam.System
                 playerController.physics.velocity = velocity;
 
 
-                isUsable = false;
+                CanUseAbility = false;
             }
         }
     }

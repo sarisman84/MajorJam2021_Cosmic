@@ -58,11 +58,11 @@ public class PlayerController : MonoBehaviour
 
     #region Public Properties to mod player stats
 
-    public float CustomFallMultiplier { set; private get; }
-    public float CustomLowJumpHeight { set; private get; }
-    public float CustomJumpHeight { set; private get; }
-    public float CustomMaxMovementSpeed { set; private get; }
-    public float CustomAcceleration { set; private get; }
+    public float CustomFallMultiplier { set; get; }
+    public float CustomLowJumpHeight { set; get; }
+    public float CustomJumpHeight { set; get; }
+    public float CustomMaxMovementSpeed { set; get; }
+    public float CustomAcceleration { set; get; }
 
     #endregion
 
@@ -221,7 +221,7 @@ public class PlayerController : MonoBehaviour
         m_BottomCComposer.m_TrackedObjectOffset =
             !IsGravityReversed ? m_CinemachineBottomTOOffset : m_CinemachineTopTOOffset;
 
-        
+
         //Update vertical camera speed and acceleration input values when gravity is reversed.
         // m_CinemachineFreeLook.m_YAxis.m_AccelTime = !IsGravityReversed
         //     ? m_CinemachineVerticalInputAcc.m_AccelTime
@@ -295,8 +295,8 @@ public class PlayerController : MonoBehaviour
         }
 
         bool isFalling = (!IsGravityReversed
-            ? m_PlayerRigidbody.velocity.y < -0.01f
-            : m_PlayerRigidbody.velocity.y > 0.01f);
+            ? m_PlayerRigidbody.velocity.y < -0.00001f
+            : m_PlayerRigidbody.velocity.y > 0.00001f);
 
         if (isFalling && !isGrounded)
         {
@@ -360,7 +360,7 @@ public class PlayerController : MonoBehaviour
     {
         Matrix4x4 matrix4X4 = Matrix4x4.TRS(BottomPosition, transform.rotation, GroundColliderExtends);
         Gizmos.matrix = matrix4X4;
-        Gizmos.color = Color.magenta - new Color(0, 0, 0, 0.5f);
+        Gizmos.color = (IsGrounded() ? Color.green : Color.red) - new Color(0, 0, 0, 0.5f);
         Gizmos.DrawCube(Vector3.zero, Vector3.one);
     }
 }

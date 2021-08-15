@@ -21,4 +21,4 @@ MonoBehaviour:
   acceleration: 0
   jumpHeight: 13
   lowJumpHeight: 10
-  fallMultiplier: 10
+  fallMultiplier: 0

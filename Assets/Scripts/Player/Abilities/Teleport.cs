@@ -12,10 +12,10 @@ namespace MajorJam.System
 
         protected override void OnAbilityUse(PlayerController playerController)
         {
-            if (isUsable)
+            if (CanUseAbility)
             {
                 playerController.transform.position = GameObject.FindGameObjectWithTag(targetPositionTag).transform.position + teleportPositionOffset;
-                isUsable = false;
+                CanUseAbility = false;
             }
            
         }

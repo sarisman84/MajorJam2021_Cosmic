@@ -19,12 +19,12 @@ namespace MajorJam.System
 
         private void SetStatsToPlayer(PlayerController playerController, bool reset = false)
         {
-            playerController.CustomFallMultiplier = reset ? 0 : fallMultiplier;
-            playerController.CustomLowJumpHeight = reset ? 0 : lowJumpHeight;
-            playerController.CustomJumpHeight = reset ? 0 : jumpHeight;
+            playerController.CustomFallMultiplier = reset ? playerController.CustomFallMultiplier == fallMultiplier ? 0 : playerController.CustomFallMultiplier : fallMultiplier;
+            playerController.CustomLowJumpHeight = reset ? playerController.CustomLowJumpHeight == lowJumpHeight ? 0 : playerController.CustomLowJumpHeight : lowJumpHeight;
+            playerController.CustomJumpHeight = reset ? playerController.CustomJumpHeight == jumpHeight ? 0 : playerController.CustomJumpHeight : jumpHeight;
 
-            playerController.CustomAcceleration = reset ? 0 : acceleration;
-            playerController.CustomMaxMovementSpeed = reset ? 0 : maxMovementSpeed;
+            playerController.CustomAcceleration = reset ? playerController.CustomAcceleration == acceleration ? 0 : playerController.CustomAcceleration : acceleration;
+            playerController.CustomMaxMovementSpeed = reset ? playerController.CustomMaxMovementSpeed == maxMovementSpeed ? 0 : playerController.CustomMaxMovementSpeed : maxMovementSpeed;
         }
     }
 }
