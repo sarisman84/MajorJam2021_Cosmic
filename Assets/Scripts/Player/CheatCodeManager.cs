@@ -7,6 +7,7 @@ using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.XR;
 using System.Text.RegularExpressions;
+using Systems;
 
 public class CheatCodeManager : MonoBehaviour
 {
@@ -42,7 +43,7 @@ public class CheatCodeManager : MonoBehaviour
     private void Update()
     {
         if (cheatCodeToggle.GetButtonDown())
-            m_AttemptACheatCode = !m_AttemptACheatCode;
+            m_AttemptACheatCode = !m_AttemptACheatCode && UIManager.Get.IsInGame;
         if (!m_AttemptACheatCode && m_CurInputState == 1)
         {
             onCheatInputDisable?.Invoke();

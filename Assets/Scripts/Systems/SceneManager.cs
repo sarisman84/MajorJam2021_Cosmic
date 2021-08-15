@@ -27,16 +27,23 @@ public class SceneManager : MonoBehaviour
     {
         m_Cam.clearFlags = CameraClearFlags.Skybox;
         m_Cam.backgroundColor = m_DefaultColor;
-        UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
+        AsyncOperation operation = UnityEngine.SceneManagement.SceneManager.LoadSceneAsync(1, LoadSceneMode.Additive);
         onLevelLoad?.Invoke();
+        // operation.completed += (o) =>
+        //     UnityEngine.SceneManagement.SceneManager.SetActiveScene(
+        //         UnityEngine.SceneManagement.SceneManager.GetSceneAt(1));
     }
 
     public void UnloadLevel()
     {
         m_Cam.clearFlags = CameraClearFlags.SolidColor;
         m_Cam.backgroundColor = Color.gray;
-        UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(
+        AsyncOperation operation = UnityEngine.SceneManagement.SceneManager.UnloadSceneAsync(
             UnityEngine.SceneManagement.SceneManager.GetSceneAt(1));
         onLevelUnload?.Invoke();
+
+        // operation.completed += (o) =>
+        //     UnityEngine.SceneManagement.SceneManager.SetActiveScene(
+        //         UnityEngine.SceneManagement.SceneManager.GetSceneAt(0));
     }
 }

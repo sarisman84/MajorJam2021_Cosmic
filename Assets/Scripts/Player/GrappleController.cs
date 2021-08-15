@@ -40,6 +40,7 @@ public class GrappleController : MonoBehaviour
         UIManager.Get.ONPauseEvent += OnPauseEvent;
     }
 
+
     private void OnPauseEvent(bool isPausing)
     {
         InputManager.SetInputActive(!isPausing, grapple);
@@ -48,8 +49,6 @@ public class GrappleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-
         m_ClosestPoint = !m_IsAlreadyGrapling ? GetClosestGrapplePoint() : m_ClosestPoint;
 
         UpdateGrappleSelectionIndicator(IsGrappling);
@@ -137,6 +136,12 @@ public class GrappleController : MonoBehaviour
 
     private GrapplePoint GetClosestGrapplePoint()
     {
+        if (m_GrapplePoints.Count == 0)
+        {
+            Debug.LogError("Couldnt find any grapple points. Searching again.");
+            m_GrapplePoints = GameObject.FindObjectsOfType<GrapplePoint>().ToList();
+        }
+
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(m_Cam);
         // m_GrapplePoints = m_GrapplePoints.OrderBy(p => Vector3.Distance(p.transform.position, transform.position))
         //     .ToList();
@@ -165,6 +170,7 @@ public class GrappleController : MonoBehaviour
     private void OnEnable()
     {
         InputManager.SetInputActive(true, grapple);
+        m_GrapplePoints = GameObject.FindObjectsOfType<GrapplePoint>().ToList();
     }
 
     private void OnDisable()

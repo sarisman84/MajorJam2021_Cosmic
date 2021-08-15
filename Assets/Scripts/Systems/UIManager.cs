@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using MajorJam.System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
 namespace Systems
@@ -17,7 +18,8 @@ namespace Systems
         [Space] public Canvas mainMenu;
         public Canvas pauseMenu, settingsMenu;
         public event Action<bool> ONPauseEvent;
-
+        public UnityEvent onGameVictory;
+        
         private bool latestMainMenuState, latestPauseMenuState;
 
         private void Awake()
@@ -54,17 +56,30 @@ namespace Systems
                         pauseMenu.gameObject.SetActive(true);
                         return;
                     }
-                    
+
                     GameObject o;
                     (o = pauseMenu.gameObject).SetActive(!pauseMenu.gameObject.activeSelf);
-                    Cursor.visible = o.activeSelf;
-                    Cursor.lockState = o.activeSelf ? CursorLockMode.None : CursorLockMode.Locked;
-                    ONPauseEvent?.Invoke(o.activeSelf);
+                    TriggerPauseEvent(o.activeSelf);
+                    SetCursorActive(o.activeSelf);
                 }
             }
         }
 
+        public void TriggerPauseEvent(bool value)
+        {
+            ONPauseEvent?.Invoke(value);
+        }
 
+        public void SetCursorActive(bool value)
+        {
+            Cursor.visible = value;
+            Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
+        }
+        
+        public void WinGame()
+        {
+            onGameVictory?.Invoke();
+        }
         public void ToMenu()
         {
             mainMenu.gameObject.SetActive(latestMainMenuState);
@@ -93,5 +108,7 @@ namespace Systems
 #endif
             Application.Quit();
         }
+
+      
     }
 }

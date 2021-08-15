@@ -242,19 +242,6 @@ public class PlayerController : MonoBehaviour
             !IsGravityReversed ? m_CinemachineBottomTOOffset : m_CinemachineTopTOOffset;
 
 
-        //Update vertical camera speed and acceleration input values when gravity is reversed.
-        // m_CinemachineFreeLook.m_YAxis.m_AccelTime = !IsGravityReversed
-        //     ? m_CinemachineVerticalInputAcc.m_AccelTime
-        //     : -m_CinemachineVerticalInputAcc.m_AccelTime;
-        //
-        // m_CinemachineFreeLook.m_YAxis.m_DecelTime = !IsGravityReversed
-        //     ? m_CinemachineVerticalInputAcc.m_DecelTime
-        //     : -m_CinemachineVerticalInputAcc.m_DecelTime;
-        //
-        // m_CinemachineFreeLook.m_YAxis.m_MaxSpeed = !IsGravityReversed
-        //     ? m_CinemachineVerticalInputAcc.m_MaxSpeed
-        //     : -m_CinemachineVerticalInputAcc.m_MaxSpeed;
-
         m_CinemachineFreeLook.m_YAxis.m_InvertInput = !IsGravityReversed;
     }
 
@@ -374,6 +361,7 @@ public class PlayerController : MonoBehaviour
     private void OnDisable()
     {
         InputManager.SetInputActive(false, movementInput, lookInput, jumpInput);
+        transform.position = Vector3.up;
     }
 
     private void OnDrawGizmos()
